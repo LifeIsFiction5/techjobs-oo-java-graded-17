@@ -27,18 +27,18 @@ public class Job {
 
     //Constructors for Unique ID and Other fields
 
-    public Job(int id) {
-        this.id = id;
+    public Job() {
+        this.id = nextId;
+        nextId++;
     };
 
     public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
-        this(nextId);
+        this();
         this.name = name;
         this.employer = employer;
         this.location = location;
         this.positionType = positionType;
         this.coreCompetency = coreCompetency;
-        nextId++;
     };
 
     // Equals and Hashcode methods
