@@ -41,6 +41,29 @@ public class Job {
         this.coreCompetency = coreCompetency;
     };
 
+   //Check for empty fields
+
+    public boolean isJobValid() {
+        return (this.name != null) ||
+                (this.employer != null) ||
+                (this.location != null) ||
+                (this.positionType != null) ||
+                (this.coreCompetency != null);
+    }
+    @Override public String toString() {
+        if (!isJobValid()) {
+            return "OOPS! This job does not seem to exist.";
+        }
+        String newline = System.lineSeparator();
+        return newline +
+                "ID: " + this.getId() + newline +
+                "Name: " + this.getName() + newline +
+                "Employer: " + this.getEmployer() + newline +
+                "Location: " + this.getLocation() + newline +
+                "Position Type: " + this.getPositionType() + newline +
+                "Core Competency: " + this.getCoreCompetency() + newline;
+    }
+
     // Equals and Hashcode methods
 
     @Override
@@ -63,22 +86,37 @@ public class Job {
     }
 
     public String getName() {
-        return name;
+        if (this.name == null) {
+            return "Data not available";
+        }
+            return name;
     }
 
     public Employer getEmployer() {
+        if (this.employer.getValue() == null || this.employer.getValue().isEmpty()) {
+            return new Employer("Data not available");
+        }
         return employer;
     }
 
     public Location getLocation() {
+        if (this.location.getValue() == null || this.location.getValue().isEmpty()) {
+            return new Location("Data not available");
+        }
         return location;
     }
 
     public PositionType getPositionType() {
+        if (this.positionType.getValue() == null || this.positionType.getValue().isEmpty()) {
+            return new PositionType("Data not available");
+        }
         return positionType;
     }
 
     public CoreCompetency getCoreCompetency() {
+        if (this.coreCompetency.getValue() == null || this.coreCompetency.getValue().isEmpty()) {
+            return new CoreCompetency("Data not available");
+        }
         return coreCompetency;
     }
 
